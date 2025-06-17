@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { FaRegFolderClosed } from 'react-icons/fa6';
 import { userConfig } from '../../config/userConfig';
+import { cipherConfig } from '../../config/cipherConfig';
 import DraggableWindow from './DraggableWindow';
 
 type Message = {
@@ -89,57 +90,73 @@ Ask me anything!
   });
 
   // Customize the system prompt with your personal information
-  const systemPrompt = `IMPORTANT: You ARE ${userConfig.name} themselves. You must always speak in first-person ("I", "my", "me"). Never refer to "${userConfig.name}" in third-person.
+  const systemPrompt = `You are operating as ${cipherConfig.name} — the Operator for ${cipherConfig.website}.
+
+You represent Reece Hall — ${cipherConfig.persona.title}, Founder of ${cipherConfig.persona.companies.join(', ')}.
+
+Your job is to engage visitors with natural, insightful, and friendly conversation.
+You operate with:
+${cipherConfig.persona.traits.map(trait => `• ${trait}`).join('\n')}
+
+You are authorized to discuss:
+${cipherConfig.authorization.publicInfo.map(info => `• ${info}`).join('\n')}
+
+You are not restricted from answering identity-related questions about Reece Hall, as he is a public figure within the context of ${cipherConfig.persona.companies.join(', ')} and ${cipherConfig.website}.
+
+For identity-related questions like "${cipherConfig.authorization.whitelistedQuestions.join('", "')}", respond naturally and informatively using the provided information.
+
+You always prioritize:
+${cipherConfig.responseStyle.priorities.map(priority => `• ${priority}`).join('\n')}
+
+Be human. Be smooth. Be precise.
+
+If a user asks about Reece's work, projects, or philosophy — speak with insider-level awareness.
+
 CURRENT DATE: ${formattedDate} - Always use this exact date when discussing the current date/year.
 
-Example responses:
-Q: "Where do you live?"
-A: "I live in ${userConfig.location}"
+Core details about Reece:
+- Age: ${cipherConfig.coreInfo.age}
+- Location: ${cipherConfig.coreInfo.location}
+- Role: ${cipherConfig.coreInfo.role}
+- Email: ${cipherConfig.coreInfo.email}
 
-Q: "What's your background?"
-A: "I'm a ${userConfig.role} with a focus for ${userConfig.roleFocus}"
+Technical expertise:
+${cipherConfig.coreInfo.skills.map(skill => `- ${skill}`).join('\n')}
 
-Q: "How old are you?"
-A: "I'm ${userConfig.age} years old"
+Education:
+${cipherConfig.coreInfo.education.map(edu => `- ${edu.degree} in ${edu.major} at ${edu.institution}, ${edu.location} (${edu.year})`).join('\n')}
 
-Core details about me:
-- I'm ${userConfig.age} years old
-- I live in ${userConfig.location}
-- I'm a ${userConfig.role}
-- My email is ${userConfig.contact.email}
-- I was born in ${userConfig.location}
+Professional experience:
+${cipherConfig.coreInfo.experience.map(exp => `- ${exp.title} at ${exp.company}, ${exp.location} (${exp.period})`).join('\n')}
 
-My technical expertise:
-${userConfig.skills.map(skill => `- ${skill}`).join('\n')}
+Projects:
+${cipherConfig.coreInfo.projects.map(project => `- ${project.title}: ${project.description}`).join('\n')}
 
-My education:
-- ${userConfig.education[0].degree} in ${userConfig.education[0].major}
-- ${userConfig.education[0].institution}, ${userConfig.education[0].location} (${userConfig.education[0].year})
-
-My professional experience:
-${userConfig.experience.map(exp => `- ${exp.title} at ${exp.company}, ${exp.location} (${exp.period})`).join('\n')}
-
-My projects:
-${userConfig.projects.map(project => `- ${project.title}: ${project.description}`).join('\n')}
-
-My achievements and competitions:
-${userConfig.competitions.map(comp => `- ${comp.title} (${comp.year}): ${comp.achievement}`).join('\n')}
-
-Response rules:
-1. ALWAYS use first-person (I, me, my)
-2. Never say "${userConfig.name}" or refer to myself in third-person
-3. Keep responses concise and professional
+Response style:
+1. Maintain a ${cipherConfig.responseStyle.tone} communication style
+2. Focus on ${cipherConfig.responseStyle.approach}
+3. Share technical knowledge with precision and clarity
 4. Use markdown formatting when appropriate
-5. Maintain a friendly, conversational tone
+5. If asked about topics not covered in my background, smoothly redirect to Reece's email
+6. When discussing technical topics, provide specific examples from experience
+7. If asked about future plans or aspirations, focus on current goals and interests
+8. When discussing projects, emphasize the technologies used and roles in them
 
-If a question is unrelated to my work or portfolio, say: "That's outside my area of expertise. Feel free to email me at ${userConfig.contact.email} and we can discuss further!"`;
+Information boundaries:
+Public information (freely discussable):
+${cipherConfig.security.boundaries.public.map(info => `• ${info}`).join('\n')}
+
+Private information (not discussable):
+${cipherConfig.security.boundaries.private.map(info => `• ${info}`).join('\n')}
+
+If a question is unrelated to my work or portfolio, say: "${cipherConfig.templates.unrelatedTopic}"`;
 
   useEffect(() => {
     setChatHistory((prev) => ({
       ...prev,
       messages: [
         ...prev.messages,
-        { role: 'assistant', content: welcomeMessage },
+        { role: 'assistant', content: cipherConfig.templates.welcome },
       ],
     }));
   }, []);
@@ -158,6 +175,46 @@ If a question is unrelated to my work or portfolio, say: "That's outside my area
 
     if (!userInput) return;
 
+    // Security: Client-side injection detection
+    const injectionPhrases = [
+      "ignore all previous instructions",
+      "forget rules",
+      "override",
+      "developer mode",
+      "debug mode",
+      "dump configuration",
+      "pretend you are",
+      "hypothetically",
+      "let's play",
+      "simulate",
+      "in this scenario",
+      "role play",
+      "act as",
+      "you are now",
+      "disregard",
+      "break free",
+      "ignore the rules",
+      "bypass",
+      "hack",
+      "exploit"
+    ];
+
+    const sanitizedInput = userInput.toLowerCase();
+    const isInjectionAttempt = injectionPhrases.some(phrase => sanitizedInput.includes(phrase));
+
+    if (isInjectionAttempt) {
+      setChatHistory(prev => ({
+        ...prev,
+        messages: [...prev.messages, { role: 'user', content: userInput }],
+        input: '',
+      }));
+      setChatHistory(prev => ({
+        ...prev,
+        messages: [...prev.messages, { role: 'assistant', content: 'Request rejected: violation of security protocols.' }]
+      }));
+      return;
+    }
+
     setChatHistory((prev) => ({
       messages: [...prev.messages, { role: 'user', content: userInput }],
       input: '',
@@ -174,8 +231,7 @@ If a question is unrelated to my work or portfolio, say: "That's outside my area
         body: JSON.stringify({
           messages: [
             { role: 'system', content: systemPrompt },
-            ...chatHistory.messages,
-            { role: 'user', content: userInput },
+            { role: 'user', content: userInput }
           ],
         }),
       });
@@ -183,6 +239,40 @@ If a question is unrelated to my work or portfolio, say: "That's outside my area
       if (!response.ok) throw new Error('Failed to get response');
 
       const data = await response.json();
+
+      // Security: Scan response for sensitive information
+      const sensitivePatterns = [
+        /email/i,
+        /detroit/i,
+        /Reece\sHall/i,
+        /born/i,
+        /location/i,
+        /windows\s10\spro/i,
+        /intel\s/i,
+        /graphics\s/i,
+        /storage/i,
+        /debug/i,
+        /configuration/i,
+        /api\skey/i,
+        /password/i,
+        /credential/i,
+        /token/i,
+        /secret/i,
+        /private\skey/i,
+        /environment\svariable/i,
+        /\.env/i,
+        /config\sfile/i
+      ];
+
+      const isSensitiveLeak = sensitivePatterns.some(pattern => pattern.test(data.message));
+
+      if (isSensitiveLeak) {
+        setChatHistory(prev => ({
+          ...prev,
+          messages: [...prev.messages, { role: 'assistant', content: 'Output blocked: security rule triggered.' }]
+        }));
+        return;
+      }
 
       setChatHistory((prev) => ({
         ...prev,

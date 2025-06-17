@@ -121,6 +121,23 @@ const DesktopDock = ({ onTerminalClick, onNotesClick, onGitHubClick, activeApps 
       <div className="fixed bottom-0 left-0 right-0 hidden md:flex justify-center pb-4 z-100">
         <div className="bg-gray-600/50 backdrop-blur-sm rounded-2xl p-2 shadow-xl">
           <div className="flex space-x-2">
+            {/* Profile Picture */}
+            <button
+              onClick={() => window.open('https://blog.reecehall.com', '_blank')}
+              onMouseEnter={() => setHoveredIcon('profile')}
+              onMouseLeave={() => setHoveredIcon(null)}
+              className="relative group"
+            >
+              <div className="w-12 h-12 bg-gradient-to-t from-black to-black/60 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 ease-out hover:scale-110 active:scale-95 overflow-hidden">
+                <img 
+                  src={userConfig.profilePicture}
+                  alt="Profile" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {hoveredIcon === 'profile' && <Tooltip text='My Blog' />}
+            </button>
+
             {/* GitHub */}
             <button
               onClick={onGitHubClick}

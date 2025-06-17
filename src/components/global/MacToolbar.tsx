@@ -148,6 +148,11 @@ export default function MacToolbar({
         icon: <FaEnvelope size={16} />,
         action: () => window.open(`mailto:${userConfig.contact.email}`),
       },
+      {
+        label: 'Blog',
+        icon: <IoDocumentText size={16} />,
+        action: () => window.open('https://blog.reecehall.com', '_blank'),
+      },
     ],
     Help: [
       {
