@@ -25,14 +25,13 @@ jobs:
       - name: Build Astro site
         run: npm run build
 
-      - name: Deploy to Hostinger via SFTP
-        uses: appleboy/scp-action@v0.1.7
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          host: ${{ secrets.HOSTINGER_SERVER }}
+          server: ${{ secrets.HOSTINGER_SERVER }}
           username: ${{ secrets.HOSTINGER_USERNAME }}
           password: ${{ secrets.HOSTINGER_PASSWORD }}
-          source: "dist/*"
-          target: "/public_html"
-          strip_components: 0
-          overwrite: true
-          timeout: 30s 
+          local-dir: dist
+          server-dir: /public_html/
+          protocol: ftp
+          dangerous-clean-slate: false 
