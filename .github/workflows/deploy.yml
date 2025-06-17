@@ -32,6 +32,6 @@ jobs:
           username: ${{ secrets.HOSTINGER_USERNAME }}
           password: ${{ secrets.HOSTINGER_PASSWORD }}
           local-dir: dist/
-          server-dir: /
+          server-dir: /public_html/
           protocol: ftp
           dangerous-clean-slate: false 
