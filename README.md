@@ -131,4 +131,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 For questions or support, please open an issue on GitHub.
 
 Original version made with ❤️ in Austin, TX by Johnny Culbreth
-Modified with ❤️ in Giza, Egypt by aabdoo23
+Modified with ❤️ in Detroit, Mi By R3defined
