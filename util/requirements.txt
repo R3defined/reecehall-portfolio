@@ -1,1 +1,2 @@
-requests>=2.31.0 
+requests>=2.31.0
+pathlib2>=2.3.7 
