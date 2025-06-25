@@ -2,8 +2,9 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
-import vercel from '@astrojs/vercel';
+import vercel from '@astrojs/vercel/serverless';
 import sitemap from '@astrojs/sitemap';
+import staticAdapter from '@astrojs/adapter-static';
 
 export default defineConfig({
   // Replace with your website URL (required for sitemap generation)
