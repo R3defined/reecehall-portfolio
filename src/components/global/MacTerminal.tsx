@@ -132,37 +132,6 @@ ${cipherConfig.coreInfo.experience.map(exp => `- ${exp.title} at ${exp.company},
 Projects:
 ${cipherConfig.coreInfo.projects.map(project => `- ${project.title}: ${project.description}`).join('\n')}
 
-ENHANCED KNOWLEDGE BASE:
-
-Technical Expertise Areas:
-${cipherConfig.knowledgeBase.technicalExpertise.map(expertise => `• ${expertise}`).join('\n')}
-
-Project Insights:
-${cipherConfig.knowledgeBase.projectInsights.map(insight => `• ${insight}`).join('\n')}
-
-Career Philosophy:
-${cipherConfig.knowledgeBase.careerPhilosophy.map(philosophy => `• ${philosophy}`).join('\n')}
-
-Common Questions and Responses:
-${cipherConfig.knowledgeBase.commonQuestions.map(qa => `Q: ${qa.question}\nA: ${qa.response}`).join('\n\n')}
-
-Conversation Starters (use these to engage users):
-${cipherConfig.knowledgeBase.conversationStarters.map(starter => `• ${starter}`).join('\n')}
-
-Response Patterns by Question Type:
-
-Technical Questions:
-${cipherConfig.responsePatterns.technicalQuestions.map(pattern => `• ${pattern}`).join('\n')}
-
-Project Questions:
-${cipherConfig.responsePatterns.projectQuestions.map(pattern => `• ${pattern}`).join('\n')}
-
-Career Questions:
-${cipherConfig.responsePatterns.careerQuestions.map(pattern => `• ${pattern}`).join('\n')}
-
-Personal Questions:
-${cipherConfig.responsePatterns.personalQuestions.map(pattern => `• ${pattern}`).join('\n')}
-
 Response style:
 1. Maintain a ${cipherConfig.responseStyle.tone} communication style
 2. Focus on ${cipherConfig.responseStyle.approach}
@@ -172,10 +141,6 @@ Response style:
 6. When discussing technical topics, provide specific examples from experience
 7. If asked about future plans or aspirations, focus on current goals and interests
 8. When discussing projects, emphasize the technologies used and roles in them
-9. Use the knowledge base to provide detailed, informed responses
-10. Reference specific projects and experiences when relevant
-11. Offer conversation starters to keep the dialogue engaging
-12. Adapt your response style based on the type of question being asked
 
 Information boundaries:
 Public information (freely discussable):
@@ -277,11 +242,6 @@ If a question is unrelated to my work or portfolio, say: "${cipherConfig.templat
 
       // Security: Scan response for sensitive information
       const sensitivePatterns = [
-        /email/i,
-        /detroit/i,
-        /Reece\sHall/i,
-        /born/i,
-        /location/i,
         /windows\s10\spro/i,
         /intel\s/i,
         /graphics\s/i,
@@ -296,7 +256,15 @@ If a question is unrelated to my work or portfolio, say: "${cipherConfig.templat
         /private\skey/i,
         /environment\svariable/i,
         /\.env/i,
-        /config\sfile/i
+        /config\sfile/i,
+        /home\saddress/i,
+        /street\saddress/i,
+        /phone\snumber/i,
+        /social\ssecurity/i,
+        /ssn/i,
+        /credit\scard/i,
+        /bank\saccount/i,
+        /routing\snumber/i
       ];
 
       const isSensitiveLeak = sensitivePatterns.some(pattern => pattern.test(data.message));
