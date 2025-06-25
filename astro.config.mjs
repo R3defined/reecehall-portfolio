@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   // Replace with your website URL (required for sitemap generation)
-  site: 'https://example.com',
+  site: 'https://reecehall.com',
 
   // URL configuration
   trailingSlash: 'never', // Removes trailing slashes from URLs
@@ -31,7 +31,7 @@ export default defineConfig({
 
   // Deployment configuration
   output: 'server', // Server-side rendering - required for OpenAI API usage
-  adapter: vercel(), // Deploy to Vercel - optional
+  adapter: vercel({}), // Deploy to Vercel - optional
   devToolbar: {
     enabled: false,
   },
