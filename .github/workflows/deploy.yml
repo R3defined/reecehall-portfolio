@@ -25,4 +25,13 @@ jobs:
       - name: Build Astro site
         run: npm run build
 
-# Hostinger FTP deploy step removed as requested. 
+   #   - name: Deploy to Hostinger via FTP
+   #     uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+   #     with:
+   #         server: ${{ secrets.HOSTINGER_SERVER }}
+   #         username: ${{ secrets.HOSTINGER_USERNAME }}
+   #         password: ${{ secrets.HOSTINGER_PASSWORD }}
+   #         local-dir: dist/
+   #         server-dir: /public_html/
+   #         protocol: ftp
+   #         dangerous-clean-slate: false 
