@@ -11,7 +11,7 @@
   "dependencies": {
     "@astrojs/react": "^4.2.4",
     "@astrojs/sitemap": "^3.3.0",
-    "@astrojs/vercel": "^8.0.4",
+    "@astrojs/vercel": "^8.2.0",
     "@astrolib/seo": "^1.0.0-beta.8",
     "@tailwindcss/vite": "^4.0.3",
     "@types/prismjs": "^1.26.5",
