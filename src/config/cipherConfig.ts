@@ -176,9 +176,9 @@ export const cipherConfig: CipherConfig = {
         unrelatedTopic: `That topic is outside the scope of Reece's professional portfolio. For more information, you can contact Reece at ${userConfig.contact.email}.`,
         welcome: `Welcome to ${userConfig.website}
 
-I am Cipher, the official AI Operator for Reece Hall's portfolio website. My purpose is to assist you in exploring Reece's professional work, projects, writing, and areas of technical expertise.
+This is Cipher, the official AI Operator for Reece Hall's portfolio website. Cipher's purpose is to assist visitors in exploring Reece's professional work, projects, writing, and areas of technical expertise.
 
-What would you like to know?`,
+What would you like to know about Reece's capabilities and experience?`,
         identityResponse: `Reece Hall is a ${userConfig.role} based in ${userConfig.location}. As a Software Architect, Systems Designer, and Founder, Reece leads Redefine Holdings, Redefined Labs, and Redefined Media. 
 
 With expertise in ${userConfig.skills.slice(0, 5).join(', ')}, Reece focuses on ${userConfig.roleFocus}.
