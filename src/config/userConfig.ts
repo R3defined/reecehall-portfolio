@@ -19,7 +19,7 @@ export const userConfig = {
     name: 'Reece Hall',
     role: 'Software Developer - Full Stack Developer',
     location: 'Detroit, Mi',
-    email: 'Reece@Redefinedlabs.io',
+    email: 'Reece@redefinedlabs.io',
     website: 'reecehall.com',
     roleFocus: 'Full Stack Development using React, Node.js, and Bootstrap. Can also work with Angular, React, and Node.js.',
     age: 25,    
@@ -33,7 +33,7 @@ export const userConfig = {
 
     // Contact Information
     contact: {
-        email: 'Reece@Redefinedlabs.io',
+        email: 'Reece@redefinedlabs.io',
         phone: '+5869609311', // Add your phone number
         calendly: 'https://calendly.com/hallmaurice31/one-on-one', // Add your Calendly URL
     },
