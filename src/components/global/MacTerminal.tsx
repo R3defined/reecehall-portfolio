@@ -70,7 +70,7 @@ export default function MacTerminal({ isOpen, onClose }: MacTerminalProps) {
   }, [placeholder, isDeleting, currentPlaceholderIndex]);
 
   // Customize this welcome message with your information
-  const welcomeMessage = `Welcome to My Portfolio
+  const welcomeMessage = `Welcome to Reece's Portfolio
 
 Name: ${userConfig.name}
 Role: ${userConfig.role}

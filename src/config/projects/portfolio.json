@@ -2,8 +2,8 @@
     "id": "portfolio",
     "title": "Portfolio (This Website)",
     "description": "An open source interactive portfolio website, with a clean and modern design, sections for education, experience, skills, competitions, and more. Built with Astro.js, Tailwind CSS, TypeScript, React, and Vercel.",
-    "repoUrl": "https://github.com/aabdoo23/portfolio",
-    "liveUrl": "https://aabdoo23.vercel.app",
+    "repoUrl": "https://github.com/R3defined/reecehall-portfolio",
+    "liveUrl": "https://reecehall.com",
     "techStack": [
         "Astro.js",
         "Tailwind CSS",

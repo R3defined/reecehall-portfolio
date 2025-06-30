@@ -1,12 +1,6 @@
-import neurospeccompanionmerged from './projects/neurospeccompanionmerged.json';
-import scheds from './projects/scheds.json';
-import fadedTextRestoration from './projects/fadedtextrestoration.json';
-import clinicalmain from './projects/clinicalmain.json';
-import seatReservation from './projects/seatreservation.json';
-import nucpaBalloons from './projects/nucpa-balloons.json';
-import nucpaBalloonsApi from './projects/nucpaballoonsapi.json';
+
 import portfolio from './projects/portfolio.json';
-import foodies from './projects/foodies.json';
+
 
 interface Competition {
     title: string;
@@ -19,7 +13,7 @@ export const userConfig = {
     name: 'Reece Hall',
     role: 'Software Developer - Full Stack Developer',
     location: 'Detroit, Mi',
-    email: 'Hallmaurice31@gmail.com',
+    email: 'Reece@Redefinedlabs.io',
     website: 'reecehall.com',
     roleFocus: 'Full Stack Development using React, Node.js, and Bootstrap. Can also work with Angular, React, and Node.js.',
     age: 25,    
@@ -33,7 +27,7 @@ export const userConfig = {
 
     // Contact Information
     contact: {
-        email: 'Hallmaurice31@gmail.com',
+        email: 'Reece@Redefinedlabs.io',
         phone: '+5869609311', // Add your phone number
         calendly: 'https://calendly.com/hallmaurice31/one-on-one', // Add your Calendly URL
     },
@@ -274,15 +268,7 @@ export const userConfig = {
 
     // Projects Configuration
     projects: [
-        scheds,
         portfolio,
-        foodies,
-        fadedTextRestoration,
-        nucpaBalloons,
-        nucpaBalloonsApi,
-        neurospeccompanionmerged,
-        clinicalmain,
-        seatReservation,
         
         // Add more projects here
     ]
