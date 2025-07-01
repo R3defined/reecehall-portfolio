@@ -1,4 +1,3 @@
-
 import portfolio from './projects/portfolio.json';
 
 
@@ -28,7 +27,7 @@ export const userConfig = {
     // Contact Information
     contact: {
         email: 'Reece@Redefinedlabs.io',
-        phone: '+5869609311', // Add your phone number
+        phone: '15869609311', // Updated phone number
         calendly: 'https://calendly.com/hallmaurice31/one-on-one', // Add your Calendly URL
     },
 
