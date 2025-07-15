@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { BsGithub, BsSpotify, BsFilePdf, BsStickyFill, BsLinkedin, BsCalendar } from 'react-icons/bs';
 import { IoIosCall, IoIosMail } from 'react-icons/io';
-import { FaLink, FaEnvelope } from 'react-icons/fa';
+import { FaLink, FaEnvelope, FaHandshake } from 'react-icons/fa';
 import ResumeViewer from './ResumeViewer';
 import SpotifyPlayer from './SpotifyPlayer';
+import ApplicationForm from './ApplicationForm';
 import { userConfig } from '../../config/userConfig';
 import { RiTerminalFill } from 'react-icons/ri';
 
@@ -17,6 +18,7 @@ interface DesktopDockProps {
     github: boolean;
     resume: boolean;
     spotify: boolean;
+    connect: boolean;
   };
 }
 
@@ -24,6 +26,7 @@ const DesktopDock = ({ onTerminalClick, onNotesClick, onGitHubClick, activeApps 
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
   const [showResume, setShowResume] = useState(false);
   const [showSpotify, setShowSpotify] = useState(false);
+  const [showConnect, setShowConnect] = useState(false);
   const [showLinksPopup, setShowLinksPopup] = useState(false);
   const linksPopupRef = useRef<HTMLDivElement>(null);
 
@@ -49,6 +52,14 @@ const DesktopDock = ({ onTerminalClick, onNotesClick, onGitHubClick, activeApps 
 
   const handleCloseSpotify = () => {
     setShowSpotify(false);
+  };
+
+  const handleConnectClick = () => {
+    setShowConnect(true);
+  };
+
+  const handleCloseConnect = () => {
+    setShowConnect(false);
   };
 
   const handleEmailClick = () => {
@@ -216,6 +227,19 @@ const DesktopDock = ({ onTerminalClick, onNotesClick, onGitHubClick, activeApps 
               {hoveredIcon === 'email' && <Tooltip text='Email' />}
             </button>
 
+            {/* Connect App */}
+            <button
+              onClick={handleConnectClick}
+              onMouseEnter={() => setHoveredIcon('connect')}
+              onMouseLeave={() => setHoveredIcon(null)}
+              className="relative"
+            >
+              <div className={`w-12 h-12 bg-gradient-to-t from-orange-600 to-orange-400 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 ease-out hover:scale-110 active:scale-95 ${activeApps.connect ? 'ring-2 ring-white/50' : ''}`}>
+                <FaHandshake size={30} className='text-white' />
+              </div>
+              {hoveredIcon === 'connect' && <Tooltip text='Launch Application' />}
+            </button>
+
             {/* Links */}
             <button
               onClick={handleLinksClick}
@@ -252,6 +276,7 @@ const DesktopDock = ({ onTerminalClick, onNotesClick, onGitHubClick, activeApps 
         onClose={handleCloseSpotify}
         playlistId={userConfig.spotify.playlistId}
       />
+      <ApplicationForm isOpen={showConnect} onClose={handleCloseConnect} />
     </>
   );
 };

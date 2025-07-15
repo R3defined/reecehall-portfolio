@@ -1,5 +1,6 @@
 import { BsGithub, BsSpotify, BsLinkedin } from 'react-icons/bs';
 import { IoIosMail, IoIosCall } from 'react-icons/io';
+import { FaHandshake } from 'react-icons/fa';
 import { userConfig } from '../../config/userConfig';
 import { BsStickyFill } from 'react-icons/bs';
 import { RiTerminalFill } from 'react-icons/ri';
@@ -10,9 +11,10 @@ interface MobileDockProps {
   onNotesClick: () => void;
   onResumeClick: () => void;
   onTerminalClick: () => void;
+  onConnectClick: () => void;
 }
 
-export default function MobileDock({ onGitHubClick, onNotesClick, onResumeClick, onTerminalClick }: MobileDockProps) {
+export default function MobileDock({ onGitHubClick, onNotesClick, onResumeClick, onTerminalClick, onConnectClick }: MobileDockProps) {
   const handleEmailClick = () => {
     window.location.href = `mailto:${userConfig.contact.email}`;
   };
@@ -56,6 +58,19 @@ export default function MobileDock({ onGitHubClick, onNotesClick, onResumeClick,
           <div className='w-18 h-18 bg-black rounded-2xl flex items-center justify-center'>
             <RiTerminalFill size={55} className='text-white' />
           </div>
+        </button>
+      </div>
+
+      {/* Connect App Row */}
+      <div className='mx-4 mb-2 p-2 rounded-3xl flex justify-center items-center max-w-[400px] mx-auto'>
+        <button
+          onClick={onConnectClick}
+          className='flex flex-col items-center cursor-pointer'
+        >
+          <div className='w-16 h-16 bg-gradient-to-t from-orange-600 to-orange-400 rounded-2xl flex items-center justify-center shadow-lg'>
+            <FaHandshake size={35} className='text-white' />
+          </div>
+          <span className='text-xs text-white mt-1 font-medium'>Apply</span>
         </button>
       </div>
 

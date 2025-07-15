@@ -6,6 +6,7 @@ import DesktopDock from '../components/global/DesktopDock';
 import NotesApp from '../components/global/NotesApp';
 import GitHubViewer from '../components/global/GitHubViewer';
 import ResumeViewer from '../components/global/ResumeViewer';
+import ApplicationForm from '../components/global/ApplicationForm';
 
 interface AppLayoutProps {
   initialBg: string;
@@ -26,6 +27,7 @@ export default function Desktop({ initialBg, backgroundMap }: AppLayoutProps) {
   const [showGitHub, setShowGitHub] = useState(false);
   const [showResume, setShowResume] = useState(false);
   const [showSpotify, setShowSpotify] = useState(false);
+  const [showConnect, setShowConnect] = useState(false);
   const [currentTutorialStep, setCurrentTutorialStep] = useState(0);
   const [showTutorial, setShowTutorial] = useState(false);
 
@@ -35,6 +37,7 @@ export default function Desktop({ initialBg, backgroundMap }: AppLayoutProps) {
     github: false,
     resume: false,
     spotify: false,
+    connect: false,
   });
 
   useEffect(() => {
@@ -168,6 +171,10 @@ export default function Desktop({ initialBg, backgroundMap }: AppLayoutProps) {
           setShowTerminal(true);
           handleAppOpen('terminal');
         }}
+        onConnectClick={() => {
+          setShowConnect(true);
+          handleAppOpen('connect');
+        }}
       />
       <DesktopDock
         onTerminalClick={() => {
@@ -200,6 +207,10 @@ export default function Desktop({ initialBg, backgroundMap }: AppLayoutProps) {
       <MacTerminal isOpen={showTerminal} onClose={() => {
         setShowTerminal(false);
         handleAppClose('terminal');
+      }} />
+      <ApplicationForm isOpen={showConnect} onClose={() => {
+        setShowConnect(false);
+        handleAppClose('connect');
       }} />
       {showTutorial && (
         <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50">
